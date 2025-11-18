@@ -90,7 +90,7 @@ export function HeroSlider() {
                             fill
                             priority={index === currentSlide}
                             sizes="100vw"
-                            className="object-contain object-center"
+                            className="object-cover object-center"
                         />
                         <div className="absolute inset-0 bg-black/40" />
                         <div className="relative w-full px-2 sm:px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">

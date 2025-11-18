@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Search, ShoppingCart, Menu, Phone, MapPin, User, ChevronDown, Heart } from "lucide-react";
+import { Search, ShoppingCart, Menu, Phone, MapPin, ChevronDown, Heart, Badge, Flame, Gift, LifeBuoy, Building2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MegaMenu } from "./MegaMenu";
@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 export function Header() {
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
         <header className="w-full flex flex-col border-b border-neutral-200">
@@ -107,13 +108,13 @@ export function Header() {
                         >
                             <button
                                 className={cn(
-                                    "flex items-center space-x-2 py-3 px-4 font-bold uppercase tracking-wide transition-colors",
+                                    "flex items-center space-x-3 py-4 px-5 text-sm md:text-base font-bold uppercase tracking-wide transition-colors",
                                     isMegaMenuOpen ? "bg-neutral-200" : "bg-neutral-50 hover:bg-neutral-100"
                                 )}
                             >
-                                <Menu className="h-5 w-5" />
+                                <Menu className="h-6 w-6" />
                                 <span>All Categories</span>
-                                <ChevronDown className="h-4 w-4 ml-1" />
+                                <ChevronDown className="h-5 w-5 ml-1" />
                             </button>
 
                             {/* Mega Menu Component */}
@@ -122,21 +123,69 @@ export function Header() {
 
                         {/* Nav Links */}
                         <nav className="hidden md:flex items-center space-x-1 ml-4 overflow-x-auto">
-                            <Link href="/brands" className="px-4 py-3 hover:bg-neutral-100 text-sm font-medium whitespace-nowrap transition-colors">Brands</Link>
-                            <Link href="/offers" className="px-4 py-3 hover:bg-neutral-100 text-sm font-medium whitespace-nowrap flex items-center transition-colors">
-                                <span className="mr-1">🔥</span> TODAY'S OFFER
+                            <Link href="/brands" className="px-5 py-4 hover:bg-neutral-100 text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
+                                <Badge className="h-4 w-4" /> Brands
                             </Link>
-                            <Link href="/commercial-projects" className="px-4 py-3 hover:bg-neutral-100 text-sm font-medium whitespace-nowrap transition-colors">Commercial Projects</Link>
-                            <Link href="/gift-vouchers" className="px-4 py-3 hover:bg-neutral-100 text-sm font-medium whitespace-nowrap transition-colors">Gift Vouchers</Link>
-                            <Link href="/support" className="px-4 py-3 hover:bg-neutral-100 text-sm font-medium whitespace-nowrap transition-colors">Support</Link>
+                            <Link href="/offers" className="px-5 py-4 hover:bg-neutral-100 text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
+                                <Flame className="h-4 w-4" /> Today's Offer
+                            </Link>
+                            <Link href="/commercial-projects" className="px-5 py-4 hover:bg-neutral-100 text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
+                                <Building2 className="h-4 w-4" /> Commercial Projects
+                            </Link>
+                            <Link href="/gift-vouchers" className="px-5 py-4 hover:bg-neutral-100 text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
+                                <Gift className="h-4 w-4" /> Gift Vouchers
+                            </Link>
+                            <Link href="/support" className="px-5 py-4 hover:bg-neutral-100 text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
+                                <LifeBuoy className="h-4 w-4" /> Support
+                            </Link>
+                            <Link href="/new-arrivals" className="px-5 py-4 hover:bg-neutral-100 text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
+                                <Sparkles className="h-4 w-4" /> New Arrivals
+                            </Link>
+                            <Link href="/clearance" className="px-5 py-4 hover:bg-neutral-100 text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
+                                <Flame className="h-4 w-4" /> Clearance
+                            </Link>
+                            <Link href="/collections" className="px-5 py-4 hover:bg-neutral-100 text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
+                                <Badge className="h-4 w-4" /> Collections
+                            </Link>
                         </nav>
 
-                        {/* Mobile Menu Toggle (Placeholder) */}
-                        <button className="md:hidden p-3 hover:bg-[#333333] rounded transition-colors">
+                        <button
+                            className="md:hidden p-3 hover:bg-[#333333] rounded transition-colors"
+                            onClick={() => setIsMobileMenuOpen((v) => !v)}
+                            aria-label="Toggle menu"
+                            aria-expanded={isMobileMenuOpen}
+                        >
                             <Menu className="h-6 w-6" />
                         </button>
                     </div>
                 </div>
+                {isMobileMenuOpen && (
+                    <div className="md:hidden w-full bg-white border-t border-neutral-200">
+                        <div className="px-2 sm:px-4 py-2 grid grid-cols-1">
+                            <Link href="/brands" className="px-3 py-3 flex items-center gap-2 border-b border-neutral-200">
+                                <Badge className="h-4 w-4" /> Brands
+                            </Link>
+                            <Link href="/offers" className="px-3 py-3 flex items-center gap-2 border-b border-neutral-200">
+                                <Flame className="h-4 w-4" /> Today's Offer
+                            </Link>
+                            <Link href="/new-arrivals" className="px-3 py-3 flex items-center gap-2 border-b border-neutral-200">
+                                <Sparkles className="h-4 w-4" /> New Arrivals
+                            </Link>
+                            <Link href="/clearance" className="px-3 py-3 flex items-center gap-2 border-b border-neutral-200">
+                                <Flame className="h-4 w-4" /> Clearance
+                            </Link>
+                            <Link href="/collections" className="px-3 py-3 flex items-center gap-2 border-b border-neutral-200">
+                                <Badge className="h-4 w-4" /> Collections
+                            </Link>
+                            <Link href="/gift-vouchers" className="px-3 py-3 flex items-center gap-2 border-b border-neutral-200">
+                                <Gift className="h-4 w-4" /> Gift Vouchers
+                            </Link>
+                            <Link href="/support" className="px-3 py-3 flex items-center gap-2">
+                                <LifeBuoy className="h-4 w-4" /> Support
+                            </Link>
+                        </div>
+                    </div>
+                )}
             </div>
         </header>
     );
