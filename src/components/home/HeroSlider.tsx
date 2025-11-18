@@ -1,36 +1,64 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const slides = [
     {
         id: 1,
-        title: "Rational iCombi Pro",
-        subtitle: "The New Standard in Intelligence",
-        discount: "Save Rs. 200,000",
-        price: "Rs. 1,250,000",
-        image: "bg-gradient-to-r from-[#0a0a0a] to-[#1f1f1f]",
+        title: "Kitchenware Spotlight",
+        subtitle: "Premium Tools for Every Kitchen",
+        discount: "Save up to 20%",
+        price: "Limited-time offers",
+        imageSrc: "/kitchenware/ke10.jpg",
         cta: "Shop Now",
     },
     {
         id: 2,
-        title: "Commercial Bar Setup",
-        subtitle: "Complete Solutions for Your Bar",
-        discount: "Up to 20% OFF",
-        price: "Packages from Rs. 500,000",
-        image: "bg-gradient-to-r from-[#1f1f1f] to-[#333333]",
-        cta: "View Packages",
+        title: "Chef Essentials",
+        subtitle: "Durable, reliable, and stylish",
+        discount: "Members get extra 5%",
+        price: "Best value picks",
+        imageSrc: "/kitchenware/ke11.jpg",
+        cta: "Explore Range",
     },
     {
         id: 3,
-        title: "Tableware Collection",
-        subtitle: "Elegant Designs for Fine Dining",
-        discount: "Buy 1 Get 1 on Selected Items",
+        title: "Serveware Showcase",
+        subtitle: "Elevate presentation and service",
+        discount: "Seasonal deals",
         price: "Starting Rs. 450",
-        image: "bg-gradient-to-r from-[#000000] to-[#1f1f1f]",
-        cta: "Explore Range",
+        imageSrc: "/kitchenware/ke12.jpeg",
+        cta: "View Details",
+    },
+    {
+        id: 4,
+        title: "Pro-Grade Selection",
+        subtitle: "Built for commercial performance",
+        discount: "Bundle and save",
+        price: "Project pricing available",
+        imageSrc: "/kitchenware/ke14.jpeg",
+        cta: "Get Started",
+    },
+    {
+        id: 5,
+        title: "Modern Kitchenware",
+        subtitle: "Minimal aesthetics, maximum utility",
+        discount: "Clearance picks",
+        price: "Up to 30% OFF",
+        imageSrc: "/kitchenware/ke15.jpeg",
+        cta: "Browse Collection",
+    },
+    {
+        id: 6,
+        title: "Bar & Beverage Tools",
+        subtitle: "Precision for perfect pours",
+        discount: "Special offers",
+        price: "New arrivals",
+        imageSrc: "/kitchenware/ke21.jpeg",
+        cta: "Shop Bar",
     },
 ];
 
@@ -55,8 +83,17 @@ export function HeroSlider() {
                     className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0"
                         }`}
                 >
-                    <div className={`w-full h-full flex items-center justify-center ${slide.image} text-white`}>
-                        <div className="w-full px-2 sm:px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+                    <div className="w-full h-full relative flex items-center justify-center text-white">
+                        <Image
+                            src={slide.imageSrc}
+                            alt={slide.title}
+                            fill
+                            priority={index === currentSlide}
+                            sizes="100vw"
+                            className="object-contain object-center"
+                        />
+                        <div className="absolute inset-0 bg-black/40" />
+                        <div className="relative w-full px-2 sm:px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
                             <div className="space-y-6 z-10">
                                 <span className="inline-block px-4 py-1 bg-orange-500 text-white text-sm font-bold rounded-full mb-2">
                                     {slide.discount}
@@ -74,10 +111,7 @@ export function HeroSlider() {
                                     {slide.cta}
                                 </Button>
                             </div>
-                            <div className="hidden md:flex justify-center items-center opacity-30">
-                                {/* Placeholder for product image */}
-                                <div className="w-80 h-80 bg-white rounded-full blur-3xl"></div>
-                            </div>
+                            <div className="hidden md:block" />
                         </div>
                     </div>
                 </div>

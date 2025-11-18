@@ -24,7 +24,7 @@ interface ProductSectionProps {
 
 export function ProductSection({ title, products, viewAllLink = "#", className }: ProductSectionProps) {
     return (
-        <section className={cn("py-8", className)}>
+        <section className={cn("py-6", className)}>
             <div className="w-full px-2 sm:px-4 lg:px-8">
                 <div className="flex justify-between items-center mb-6 border-b border-[#333333] pb-2">
                     <h2 className="text-xl md:text-2xl font-bold text-white uppercase tracking-tight">
@@ -38,11 +38,11 @@ export function ProductSection({ title, products, viewAllLink = "#", className }
                     </Link>
                 </div>
 
-                <div className="grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-4 sm:gap-6">
+                <div className="grid [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))] gap-3 sm:gap-4">
                     {products.map((product) => (
                         <div
                             key={product.id}
-                            className="group bg-[#1f1f1f] border border-[#333333] rounded-lg overflow-hidden hover:border-white transition-all duration-300 relative flex flex-col"
+                            className="group bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-md transition-all duration-300 relative flex flex-col"
                         >
                             {/* Discount Badge */}
                             {product.discount && (
@@ -52,12 +52,12 @@ export function ProductSection({ title, products, viewAllLink = "#", className }
                             )}
 
                             {/* Wishlist Button */}
-                            <button className="absolute top-2 right-2 p-2 rounded-full bg-[#0a0a0a]/80 text-[#b3b3b3] hover:text-white hover:bg-[#0a0a0a] transition-colors z-10 opacity-0 group-hover:opacity-100">
+                            <button className="absolute top-2 right-2 p-2 rounded-full bg-white/80 text-neutral-700 hover:text-black hover:bg-white transition-colors z-10 opacity-0 group-hover:opacity-100 shadow-sm">
                                 <Heart className="h-5 w-5" />
                             </button>
 
                             {/* Image Area */}
-                            <Link href={`/product/${product.id}`} className="relative aspect-square bg-[#0a0a0a] p-4 block overflow-hidden">
+                            <Link href={`/product/${product.id}`} className="relative aspect-square bg-neutral-50 p-4 block overflow-hidden">
                                 <div className="w-full h-full relative group-hover:scale-105 transition-transform duration-500">
                                     <Image
                                         src={product.image}
@@ -72,30 +72,33 @@ export function ProductSection({ title, products, viewAllLink = "#", className }
 
                             {/* Content */}
                             <div className="p-4 flex flex-col flex-grow">
-                                <div className="text-xs text-[#b3b3b3] mb-1">{product.brand}</div>
-                                <Link href={`/product/${product.id}`} className="font-medium text-white hover:text-[#b3b3b3] line-clamp-2 mb-2 flex-grow transition-colors">
+                                <div className="text-xs text-neutral-500 mb-1 flex items-center gap-2">
+                                    <span className="inline-block h-2 w-2 rounded-full bg-green-500" />
+                                    {product.brand}
+                                </div>
+                                <Link href={`/product/${product.id}`} className="font-medium text-neutral-900 hover:text-neutral-600 line-clamp-2 mb-2 flex-grow transition-colors">
                                     {product.name}
                                 </Link>
 
                                 <div className="mt-auto">
                                     <div className="flex items-baseline space-x-2">
-                                        <span className="text-lg font-bold text-white">
+                                        <span className="text-lg font-bold text-neutral-900">
                                             Rs. {product.price.toLocaleString()}
                                         </span>
                                         {product.originalPrice && (
-                                            <span className="text-sm text-[#b3b3b3] line-through">
+                                            <span className="text-sm text-neutral-500 line-through">
                                                 Rs. {product.originalPrice.toLocaleString()}
                                             </span>
                                         )}
                                     </div>
 
                                     {product.originalPrice && product.price < product.originalPrice && (
-                                        <div className="text-xs text-white font-medium mt-1">
+                                        <div className="text-xs text-green-600 font-medium mt-1">
                                             Save Rs. {(product.originalPrice - product.price).toLocaleString()}
                                         </div>
                                     )}
 
-                                    <Button className="w-full mt-4 bg-white text-black hover:bg-[#b3b3b3] gap-2">
+                                    <Button className="w-full mt-4 bg-neutral-900 text-white hover:bg-neutral-800 gap-2">
                                         <ShoppingCart className="h-4 w-4" />
                                         Add to Cart
                                     </Button>

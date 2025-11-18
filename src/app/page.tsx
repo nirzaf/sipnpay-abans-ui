@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { HeroSlider } from "@/components/home/HeroSlider";
 import { ProductSection } from "@/components/home/ProductSection";
 import { products } from "@/lib/data";
+import { CategoryTiles } from "@/components/home/CategoryTiles";
 
 export default function Home() {
   // Filter products for different sections (mock logic)
@@ -12,12 +13,12 @@ export default function Home() {
   const newArrivals = products.slice(4, 8);
 
   return (
-    <main className="min-h-[100dvh] w-full flex flex-col font-sans bg-[#0a0a0a]">
+    <main className="min-h-[100dvh] w-full flex flex-col font-sans bg-white">
       <Header />
 
       <div className="flex-grow">
-        {/* Hero Slider */}
         <HeroSlider />
+        <CategoryTiles />
 
         {/* Featured Deals */}
         <ProductSection
@@ -26,12 +27,11 @@ export default function Home() {
           className="bg-[#0a0a0a]"
         />
 
-        {/* Banner 1 */}
         <div className="w-full px-2 sm:px-4 lg:px-8 py-4">
-          <div className="w-full h-32 md:h-48 bg-gradient-to-r from-[#1f1f1f] to-[#333333] rounded-lg flex items-center justify-center text-white border border-[#333333]">
+          <div className="w-full h-32 md:h-48 bg-neutral-100 rounded-lg flex items-center justify-center text-neutral-900 border border-neutral-200">
             <div className="text-center">
               <h3 className="text-2xl md:text-3xl font-bold mb-2">Complete Commercial Kitchen Setups</h3>
-              <p className="text-[#b3b3b3]">Consultation to Installation - We do it all</p>
+              <p className="text-neutral-600">Consultation to Installation - We do it all</p>
             </div>
           </div>
         </div>
@@ -50,13 +50,12 @@ export default function Home() {
           className="bg-[#0a0a0a]"
         />
 
-        {/* Banner 2 */}
         <div className="w-full px-2 sm:px-4 lg:px-8 py-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="h-40 bg-[#1f1f1f] border border-[#333333] rounded-lg flex items-center justify-center text-white font-bold text-xl hover:border-white transition-colors">
+            <div className="h-40 bg-neutral-100 border border-neutral-200 rounded-lg flex items-center justify-center text-neutral-900 font-bold text-xl">
               Seasonal Offers
             </div>
-            <div className="h-40 bg-[#1f1f1f] border border-[#333333] rounded-lg flex items-center justify-center text-white font-bold text-xl hover:border-white transition-colors">
+            <div className="h-40 bg-neutral-100 border border-neutral-200 rounded-lg flex items-center justify-center text-neutral-900 font-bold text-xl">
               New Arrivals
             </div>
           </div>
