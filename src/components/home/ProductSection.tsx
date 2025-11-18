@@ -58,11 +58,15 @@ export function ProductSection({ title, products, viewAllLink = "#", className }
 
                             {/* Image Area */}
                             <Link href={`/product/${product.id}`} className="relative aspect-square bg-[#0a0a0a] p-4 block overflow-hidden">
-                                <div className="w-full h-full relative flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                                    {/* Placeholder for actual image */}
-                                    <div className="w-3/4 h-3/4 bg-[#333333] rounded-md flex items-center justify-center text-[#b3b3b3] text-xs">
-                                        Product Image
-                                    </div>
+                                <div className="w-full h-full relative group-hover:scale-105 transition-transform duration-500">
+                                    <Image
+                                        src={product.image}
+                                        alt={product.name}
+                                        fill
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                                        className="object-contain rounded-md"
+                                        priority={false}
+                                    />
                                 </div>
                             </Link>
 
