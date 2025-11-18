@@ -25,7 +25,7 @@ interface ProductSectionProps {
 export function ProductSection({ title, products, viewAllLink = "#", className }: ProductSectionProps) {
     return (
         <section className={cn("py-8", className)}>
-            <div className="container mx-auto px-4">
+            <div className="w-full px-2 sm:px-4 lg:px-8">
                 <div className="flex justify-between items-center mb-6 border-b border-[#333333] pb-2">
                     <h2 className="text-xl md:text-2xl font-bold text-white uppercase tracking-tight">
                         {title}
@@ -38,7 +38,7 @@ export function ProductSection({ title, products, viewAllLink = "#", className }
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-4 sm:gap-6">
                     {products.map((product) => (
                         <div
                             key={product.id}
@@ -63,7 +63,7 @@ export function ProductSection({ title, products, viewAllLink = "#", className }
                                         src={product.image}
                                         alt={product.name}
                                         fill
-                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, (max-width: 1536px) 20vw, 16vw"
                                         className="object-contain rounded-md"
                                         priority={false}
                                     />

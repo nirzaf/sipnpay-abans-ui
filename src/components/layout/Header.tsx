@@ -15,7 +15,7 @@ export function Header() {
         <header className="w-full flex flex-col border-b border-[#333333]">
             {/* 1. Top Utility Bar */}
             <div className="bg-[#1f1f1f] text-xs py-2 border-b border-[#333333] hidden md:block">
-                <div className="container mx-auto px-4 flex justify-between items-center">
+                <div className="w-full px-2 sm:px-4 lg:px-8 flex justify-between items-center">
                     <div className="flex items-center space-x-4">
                         <div className="flex items-center cursor-pointer hover:text-white text-[#b3b3b3] transition-colors">
                             <span>Currency: LKR</span>
@@ -43,7 +43,7 @@ export function Header() {
 
             {/* 2. Main Header */}
             <div className="py-6 bg-[#0a0a0a] border-b border-[#333333] sticky top-0 z-40">
-                <div className="container mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
+                <div className="w-full px-2 sm:px-4 lg:px-8 flex flex-wrap items-center justify-between gap-4">
                     {/* Logo */}
                     <Link href="/" className="flex-shrink-0">
                         <div className="flex flex-col">
@@ -91,7 +91,7 @@ export function Header() {
 
             {/* 3. Navigation Menu */}
             <div className="bg-[#1f1f1f] text-white relative z-30 border-b border-[#333333]">
-                <div className="container mx-auto px-4">
+                <div className="w-full px-2 sm:px-4 lg:px-8">
                     <div className="flex items-center justify-between md:justify-start">
                         {/* All Categories Trigger */}
                         <div

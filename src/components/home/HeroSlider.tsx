@@ -48,7 +48,7 @@ export function HeroSlider() {
     const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
     return (
-        <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden bg-gray-100">
+        <div className="relative w-full h-[50vh] md:h-[65vh] lg:h-[75vh] overflow-hidden">
             {slides.map((slide, index) => (
                 <div
                     key={slide.id}
@@ -56,7 +56,7 @@ export function HeroSlider() {
                         }`}
                 >
                     <div className={`w-full h-full flex items-center justify-center ${slide.image} text-white`}>
-                        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div className="w-full px-2 sm:px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
                             <div className="space-y-6 z-10">
                                 <span className="inline-block px-4 py-1 bg-orange-500 text-white text-sm font-bold rounded-full mb-2">
                                     {slide.discount}
