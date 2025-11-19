@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
 
 interface ProductCardProps {
     id: string;
@@ -28,6 +31,21 @@ export function ProductCard({
     reviews,
     inStock,
 }: ProductCardProps) {
+    const { addToCart } = useCart();
+
+    const handleAddToCart = () => {
+        if (inStock) {
+            addToCart({
+                id,
+                name,
+                brand,
+                price,
+                image,
+                inStock,
+            });
+        }
+    };
+
     return (
         <div className="group bg-theme-bg-main border border-theme-border rounded-lg overflow-hidden hover:shadow-md transition-all duration-300 relative flex flex-col">
             {/* Discount Badge */}
@@ -115,7 +133,7 @@ export function ProductCard({
                         </div>
                     )}
 
-                    <Button className="w-full mt-4 gap-2" disabled={!inStock}>
+                    <Button className="w-full mt-4 gap-2" disabled={!inStock} onClick={handleAddToCart}>
                         <ShoppingCart className="h-4 w-4" />
                         {inStock ? 'Add to Cart' : 'Out of Stock'}
                     </Button>

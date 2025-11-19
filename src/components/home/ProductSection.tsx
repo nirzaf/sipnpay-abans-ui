@@ -20,9 +20,10 @@ interface ProductSectionProps {
     products: Product[];
     viewAllLink?: string;
     className?: string;
+    horizontal?: boolean;
 }
 
-export function ProductSection({ title, products, viewAllLink = "#", className }: ProductSectionProps) {
+export function ProductSection({ title, products, viewAllLink = "#", className, horizontal = true }: ProductSectionProps) {
     return (
         <section className={cn("py-6", className)}>
             <div className="w-full px-2 sm:px-4 lg:px-8">
@@ -38,11 +39,11 @@ export function ProductSection({ title, products, viewAllLink = "#", className }
                     </Link>
                 </div>
 
-                <div className="grid [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))] gap-3 sm:gap-4">
+                <div className={horizontal ? "flex gap-3 sm:gap-4 overflow-x-auto py-1" : "grid [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))] gap-3 sm:gap-4"}>
                     {products.map((product) => (
                         <div
                             key={product.id}
-                            className="group bg-theme-bg-main border border-theme-border rounded-lg overflow-hidden hover:shadow-md transition-all duration-300 relative flex flex-col"
+                            className={cn("group bg-theme-bg-main border border-theme-border rounded-lg overflow-hidden hover:shadow-md transition-all duration-300 relative flex flex-col", horizontal && "min-w-[220px] sm:min-w-[240px]")}
                         >
                             {/* Discount Badge */}
                             {product.discount && (
@@ -98,9 +99,13 @@ export function ProductSection({ title, products, viewAllLink = "#", className }
                                         </div>
                                     )}
 
+                                    <div className="text-xs text-theme-text-secondary mt-1">
+                                        Monthly: Rs. {Math.ceil(product.price / 12).toLocaleString()}
+                                    </div>
+
                                     <Button className="w-full mt-4 gap-2">
                                         <ShoppingCart className="h-4 w-4" />
-                                        Add to Cart
+                                        BUY NOW
                                     </Button>
                                 </div>
                             </div>

@@ -10,8 +10,11 @@ const slides = [
         id: 1,
         title: "Kitchenware Spotlight",
         subtitle: "Premium Tools for Every Kitchen",
-        discount: "Save up to 20%",
-        price: "Limited-time offers",
+        discount: "43% OFF",
+        oldPrice: 320000,
+        newPrice: 182400,
+        monthly: 15200,
+        offerEndsAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         imageSrc: "/kitchenware/ke10.jpg",
         cta: "Shop Now",
     },
@@ -19,8 +22,11 @@ const slides = [
         id: 2,
         title: "Chef Essentials",
         subtitle: "Durable, reliable, and stylish",
-        discount: "Members get extra 5%",
-        price: "Best value picks",
+        discount: "25% OFF",
+        oldPrice: 295000,
+        newPrice: 221250,
+        monthly: 18437,
+        offerEndsAt: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         imageSrc: "/kitchenware/ke11.jpg",
         cta: "Explore Range",
     },
@@ -28,8 +34,8 @@ const slides = [
         id: 3,
         title: "Serveware Showcase",
         subtitle: "Elevate presentation and service",
-        discount: "Seasonal deals",
-        price: "Starting Rs. 450",
+        discount: "Seasonal Deals",
+        offerEndsAt: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
         imageSrc: "/kitchenware/ke12.jpeg",
         cta: "View Details",
     },
@@ -64,12 +70,17 @@ const slides = [
 
 export function HeroSlider() {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [now, setNow] = useState(Date.now());
 
     useEffect(() => {
-        const timer = setInterval(() => {
+        const slideTimer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
         }, 5000);
-        return () => clearInterval(timer);
+        const tick = setInterval(() => setNow(Date.now()), 1000);
+        return () => {
+            clearInterval(slideTimer);
+            clearInterval(tick);
+        };
     }, []);
 
     const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -95,18 +106,36 @@ export function HeroSlider() {
                         <div className="absolute inset-0 bg-black/40" />
                         <div className="relative w-full px-2 sm:px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
                             <div className="space-y-6 z-10">
-                                <span className="inline-block px-4 py-1 bg-orange-500 text-white text-sm font-bold rounded-full mb-2">
-                                    {slide.discount}
-                                </span>
+                                <div className="flex items-center gap-3 mb-2">
+                                    <span className="inline-block px-4 py-1 bg-orange-500 text-white text-sm font-bold rounded-full">
+                                        {slide.discount}
+                                    </span>
+                                    {slide.offerEndsAt && (
+                                        <CountdownBadge endsAt={slide.offerEndsAt} now={now} />
+                                    )}
+                                </div>
                                 <h2 className="text-4xl md:text-6xl font-black leading-tight">
                                     {slide.title}
                                 </h2>
                                 <p className="text-xl md:text-2xl text-gray-200 font-light">
                                     {slide.subtitle}
                                 </p>
-                                <div className="text-3xl font-bold text-yellow-400 py-2">
-                                    {slide.price}
-                                </div>
+                                {slide.oldPrice && slide.newPrice && (
+                                    <div className="flex items-end gap-3 py-2">
+                                        <div className="text-3xl font-bold text-yellow-400">
+                                            Rs. {slide.newPrice.toLocaleString()}
+                                        </div>
+                                        <div className="text-lg line-through text-gray-300">
+                                            Rs. {slide.oldPrice.toLocaleString()}
+                                        </div>
+                                        <div className="text-sm text-green-300 font-semibold">
+                                            Save Rs. {(slide.oldPrice - slide.newPrice).toLocaleString()}
+                                        </div>
+                                    </div>
+                                )}
+                                {slide.monthly && (
+                                    <div className="text-sm text-gray-200">Monthly: Rs. {slide.monthly.toLocaleString()}</div>
+                                )}
                                 <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 font-bold px-8 py-6 text-lg">
                                     {slide.cta}
                                 </Button>
@@ -143,5 +172,19 @@ export function HeroSlider() {
                 ))}
             </div>
         </div>
+    );
+}
+
+function CountdownBadge({ endsAt, now }: { endsAt: Date; now: number }) {
+    const diff = Math.max(0, endsAt.getTime() - now);
+    const d = Math.floor(diff / (24 * 60 * 60 * 1000));
+    const h = Math.floor((diff % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+    const m = Math.floor((diff % (60 * 60 * 1000)) / (60 * 1000));
+    const s = Math.floor((diff % (60 * 1000)) / 1000);
+    return (
+        <span className="inline-flex items-center gap-2 px-3 py-1 bg-black/50 backdrop-blur text-white text-xs font-semibold rounded-full">
+            Offer Ends In
+            <span className="font-mono">{d}d:{h}h:{m}m:{s}s</span>
+        </span>
     );
 }

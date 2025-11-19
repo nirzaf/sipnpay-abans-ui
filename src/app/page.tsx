@@ -4,6 +4,8 @@ import { HeroSlider } from "@/components/home/HeroSlider";
 import { ProductSection } from "@/components/home/ProductSection";
 import { products } from "@/lib/data";
 import { CategoryTiles } from "@/components/home/CategoryTiles";
+import { FeaturedCards } from "@/components/home/FeaturedCards";
+import { InfoBlurbs } from "@/components/home/InfoBlurbs";
 
 export default function Home() {
   // Filter products for different sections (mock logic)
@@ -11,6 +13,20 @@ export default function Home() {
   const commercialKitchen = products.filter(p => p.category === "Commercial Kitchen");
   const barEquipment = products.filter(p => p.category === "Bar Equipment");
   const newArrivals = products.slice(4, 8);
+  const onlineExclusive = products.slice(0, 6);
+  const topSelling = [...products].sort((a, b) => (b.reviews ?? 0) - (a.reviews ?? 0)).slice(0, 6);
+  const underBudget = products.filter(p => p.price < 300000).slice(0, 6);
+  const featuredFlagship = products.slice(0, 2).map(p => ({
+    id: p.id,
+    name: p.name,
+    image: p.image,
+    price: p.price,
+    originalPrice: p.originalPrice,
+  }));
+  const topHighlights = [...products]
+    .sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0))
+    .slice(0, 3)
+    .map(p => ({ id: p.id, name: p.name, image: p.image, summary: p.description, price: p.price }));
 
   return (
     <main className="min-h-[100dvh] w-full flex flex-col font-sans bg-theme-bg-main">
@@ -19,6 +35,10 @@ export default function Home() {
       <div className="flex-grow">
         <HeroSlider />
         <CategoryTiles />
+
+        <FeaturedCards items={featuredFlagship} />
+
+        <InfoBlurbs items={topHighlights} />
 
         {/* Featured Deals */}
         <ProductSection
@@ -36,10 +56,24 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Online Exclusive */}
+        <ProductSection
+          title="Online Exclusive"
+          products={onlineExclusive}
+          className="bg-theme-bg-surface"
+        />
+
         {/* Commercial Kitchen */}
         <ProductSection
           title="Commercial Kitchen"
           products={commercialKitchen}
+          className="bg-theme-bg-surface"
+        />
+
+        {/* Top Selling */}
+        <ProductSection
+          title="Top Selling"
+          products={topSelling}
           className="bg-theme-bg-surface"
         />
 
@@ -60,6 +94,13 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Under Rs. 300,000 */}
+        <ProductSection
+          title="Under Rs. 300,000"
+          products={underBudget}
+          className="bg-theme-bg-surface"
+        />
 
         {/* New Arrivals */}
         <ProductSection

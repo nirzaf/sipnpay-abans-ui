@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MegaMenu } from "./MegaMenu";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { useCart } from "@/contexts/CartContext";
 import { cn } from "@/lib/utils";
 
 export function Header() {
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { itemCount } = useCart();
 
     return (
         <header className="w-full flex flex-col border-b border-theme-border">
@@ -65,7 +67,7 @@ export function Header() {
                         <div className="relative flex items-center">
                             <Input
                                 type="text"
-                                placeholder="Search for commercial ovens, blenders..."
+                                placeholder="Search for products, categories and more"
                                 className="w-full pl-4 pr-12 py-6 rounded-full border-2 border-theme-border bg-theme-bg-surface text-theme-text-primary placeholder:text-theme-text-secondary focus-visible:ring-brand-red focus-visible:border-brand-red"
                             />
                             <Button
@@ -86,15 +88,17 @@ export function Header() {
                             <span className="text-xs mt-1 font-medium">Wishlist</span>
                         </Link>
 
-                        <div className="flex flex-col items-center text-theme-text-secondary hover:text-theme-text-primary transition-colors cursor-pointer relative group">
+                        <Link href="/cart" className="flex flex-col items-center text-theme-text-secondary hover:text-theme-text-primary transition-colors relative group">
                             <div className="relative">
                                 <ShoppingCart className="h-6 w-6" />
-                                <span className="absolute -top-2 -right-2 bg-brand-red text-brand-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full">
-                                    0
-                                </span>
+                                {itemCount > 0 && (
+                                    <span className="absolute -top-2 -right-2 bg-brand-red text-brand-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full">
+                                        {itemCount > 99 ? '99+' : itemCount}
+                                    </span>
+                                )}
                             </div>
                             <span className="text-xs mt-1 font-medium hidden md:block">Cart</span>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -132,11 +136,26 @@ export function Header() {
                             <Link href="/offers" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
                                 <Flame className="h-4 w-4" /> Today's Offer
                             </Link>
+                            <Link href="/hire-purchase" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap transition-colors">
+                                Hire Purchase
+                            </Link>
                             <Link href="/commercial-projects" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
                                 <Building2 className="h-4 w-4" /> Commercial Projects
                             </Link>
                             <Link href="/gift-vouchers" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
                                 <Gift className="h-4 w-4" /> Gift Vouchers
+                            </Link>
+                            <Link href="/loyalty" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap transition-colors">
+                                Loyalty / Rewards
+                            </Link>
+                            <Link href="/track-order" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
+                                <MapPin className="h-4 w-4" /> Track Order
+                            </Link>
+                            <a href="tel:+94112222888" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
+                                <Phone className="h-4 w-4" /> +94 112 222 888
+                            </a>
+                            <Link href="/locations" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap transition-colors">
+                                Showroom Locator
                             </Link>
                             <Link href="/support" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
                                 <LifeBuoy className="h-4 w-4" /> Support
