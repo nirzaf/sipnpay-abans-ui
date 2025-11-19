@@ -53,14 +53,54 @@ export const categories = [
 ];
 
 export const brands = [
-    "Rational",
-    "Robot Coupe",
-    "Vitamix",
-    "Winterhalter",
-    "Scotsman",
-    "Cambro",
-    "Churchill",
-    "Steelite",
+    {
+        name: "Rational",
+        description: "World leader in intelligent cooking systems for professional kitchens",
+        logo: "/brands/rational.png",
+        productsCount: 24,
+    },
+    {
+        name: "Robot Coupe",
+        description: "French manufacturer of commercial food processors and vegetable preparation equipment",
+        logo: "/brands/robot-coupe.png",
+        productsCount: 18,
+    },
+    {
+        name: "Vitamix",
+        description: "Premium commercial blenders trusted by professional chefs worldwide",
+        logo: "/brands/vitamix.png",
+        productsCount: 12,
+    },
+    {
+        name: "Winterhalter",
+        description: "Leading manufacturer of commercial warewashing systems",
+        logo: "/brands/winterhalter.png",
+        productsCount: 15,
+    },
+    {
+        name: "Scotsman",
+        description: "World's largest manufacturer of ice systems",
+        logo: "/brands/scotsman.png",
+        productsCount: 20,
+    },
+    {
+        name: "Cambro",
+        description: "Food storage, transport and serving solutions for foodservice",
+        logo: "/brands/cambro.png",
+        productsCount: 45,
+    },
+    {
+        name: "Churchill",
+        description: "British tableware manufacturer with over 200 years of heritage",
+        logo: "/brands/churchill.png",
+        productsCount: 67,
+    },
+    {
+        name: "Steelite",
+        description: "Premium tableware designed for the hospitality industry",
+        logo: "/brands/steelite.png",
+        productsCount: 89,
+    },
 ];
 
 export const products = [
@@ -303,5 +343,112 @@ export const products = [
         category: "Furniture",
         subcategory: "Chairs",
         description: "The Astrid Curve combines flowing curves and cozy, textured fabric for a truly bohemian vibe. Perfect for eclectic living spaces.",
+    },
+];
+
+// Collections
+export const collections = [
+    {
+        id: "collection_01",
+        name: "Complete Kitchen Starter",
+        description: "Everything you need to set up a professional kitchen from scratch",
+        image: "/collections/kitchen-starter.jpg",
+        productCount: 24,
+        price: 1250000,
+    },
+    {
+        id: "collection_02",
+        name: "Bar Essentials Pro",
+        description: "Professional bar setup with coffee machines, blenders, and refrigeration",
+        image: "/collections/bar-essentials.jpg",
+        productCount: 12,
+        price: 850000,
+    },
+    {
+        id: "collection_03",
+        name: "Restaurant Dining Complete",
+        description: "Full tableware and serving solution for fine dining establishments",
+        image: "/collections/dining-complete.jpg",
+        productCount: 156,
+        price: 450000,
+    },
+    {
+        id: "collection_04",
+        name: "Pastry Chef Bundle",
+        description: "Specialized equipment for pastry and baking operations",
+        image: "/collections/pastry-bundle.jpg",
+        productCount: 18,
+        price: 380000,
+    },
+];
+
+// Special Offers
+export const offers = [
+    {
+        id: "offer_01",
+        title: "Flash Sale: Commercial Ovens",
+        description: "Up to 25% off on selected commercial ovens",
+        discount: 25,
+        validUntil: "2025-12-31",
+        image: "/offers/oven-sale.jpg",
+    },
+    {
+        id: "offer_02",
+        title: "Bar Equipment Bonanza",
+        description: "Buy 2 Get 1 Free on bar refrigeration units",
+        discount: 33,
+        validUntil: "2025-11-30",
+        image: "/offers/bar-sale.jpg",
+    },
+    {
+        id: "offer_03",
+        title: "Tableware Clearance",
+        description: "Massive discounts on Churchill and Steelite ranges",
+        discount: 40,
+        validUntil: "2025-11-25",
+        image: "/offers/tableware-clearance.jpg",
+    },
+];
+
+// Gift Voucher Options
+export const giftVouchers = [
+    { value: 10000, label: "Rs. 10,000" },
+    { value: 25000, label: "Rs. 25,000" },
+    { value: 50000, label: "Rs. 50,000" },
+    { value: 100000, label: "Rs. 100,000" },
+    { value: 250000, label: "Rs. 250,000" },
+];
+
+// Commercial Projects Portfolio
+export const projects = [
+    {
+        id: "project_01",
+        name: "Cinnamon Grand Hotel Kitchen Renovation",
+        client: "Cinnamon Grand Colombo",
+        category: "Hotel",
+        description: "Complete kitchen renovation including cooking, refrigeration, and dishwashing systems",
+        image: "/projects/cinnamon-grand.jpg",
+        completedDate: "2024-08-15",
+        value: 15000000,
+    },
+    {
+        id: "project_02",
+        name: "Ministry of Crab Restaurant Setup",
+        client: "Ministry of Crab",
+        category: "Restaurant",
+        description: "High-end kitchen setup for award-winning seafood restaurant",
+        image: "/projects/ministry-of-crab.jpg",
+        completedDate: "2024-06-20",
+        value: 8500000,
+    },
+    {
+        id: "project_03",
+        name: "Starbucks Colombo City Centre",
+        client: "Starbucks Coffee",
+        category: "Cafe",
+        description: "Complete coffee shop equipment installation",
+        image: "/projects/starbucks.jpg",
+        completedDate: "2024-09-10",
+        value: 4200000,
     },
 ];
