@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { Search, ShoppingCart, Menu, Phone, MapPin, ChevronDown, Heart, Badge, Flame, Gift, LifeBuoy, Building2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,15 @@ export function Header() {
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isOffersOpen, setIsOffersOpen] = useState(false);
+    const closeMegaMenuTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const openMega = () => {
+        if (closeMegaMenuTimer.current) clearTimeout(closeMegaMenuTimer.current);
+        setIsMegaMenuOpen(true);
+    };
+    const scheduleCloseMega = () => {
+        if (closeMegaMenuTimer.current) clearTimeout(closeMegaMenuTimer.current);
+        closeMegaMenuTimer.current = setTimeout(() => setIsMegaMenuOpen(false), 200);
+    };
     const { itemCount } = useCart();
 
     return (
@@ -112,8 +121,10 @@ export function Header() {
                         {/* All Categories Trigger */}
                         <div
                             className="relative group"
-                            onMouseEnter={() => setIsMegaMenuOpen(true)}
-                            onMouseLeave={() => setIsMegaMenuOpen(false)}
+                            onMouseEnter={openMega}
+                            onMouseLeave={scheduleCloseMega}
+                            onFocus={openMega}
+                            onBlur={scheduleCloseMega}
                         >
                             <button
                                 className={cn(
