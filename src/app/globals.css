@@ -1,13 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f6f6f6;
-  --text-primary: #111111;
-  --text-secondary: #6b7280;
-  --border-color: #e5e7eb;
-  --accent-primary: #111111;
-  --accent-secondary: #6b7280;
+  /* GLOBAL BRAND ACCENTS (consistent across themes) */
+  --brand-red: #FF2A2A;
+  --brand-grey: #E5E7EB;
+}
+
+/* LIGHT MODE VARIABLES (default) */
+:root,
+[data-theme="light"] {
+  --bg-main: #FFFFFF;           /* Pure White - page canvas */
+  --bg-surface: #FAFAFA;        /* Off-White - cards/forms */
+  --text-primary: #000000;      /* Pitch Black - headings/body */
+  --text-secondary: #4B5563;    /* Darker grey for readability on white */
+  --border-color: #E5E7EB;      /* Pastel Grey - structural elements */
+  --btn-bg: #FF2A2A;            /* Alert Red - CTA buttons */
+  --btn-text: #FFFFFF;          /* White text on red buttons */
+}
+
+/* DARK MODE VARIABLES */
+[data-theme="dark"],
+.dark {
+  --bg-main: #000000;           /* Pitch Black - page canvas */
+  --bg-surface: #121212;        /* Dark Grey - cards/modals */
+  --text-primary: #FFFFFF;      /* Pure White - headings */
+  --text-secondary: #E5E7EB;    /* Pastel Grey - body/meta text */
+  --border-color: #333333;      /* Darkened border to not distract */
+  --btn-bg: #FF2A2A;            /* Alert Red - CTA buttons */
+  --btn-text: #FFFFFF;          /* White text on red buttons */
 }
 
 * {

@@ -22,10 +22,10 @@ export function CategoryTiles() {
               <Link
                 key={cat.name}
                 href={`/category/${cat.name.toLowerCase().replace(/ /g, "-")}`}
-                className="rounded-lg border border-neutral-200 bg-white shadow-sm hover:shadow-md transition-shadow p-4 flex flex-col items-center justify-center text-center gap-2"
+                className="rounded-lg border border-theme-border bg-theme-bg-surface shadow-sm hover:shadow-md hover:border-brand-red transition-all p-4 flex flex-col items-center justify-center text-center gap-2"
               >
-                <Icon className="h-6 w-6 text-neutral-700" />
-                <span className="text-sm font-semibold text-neutral-900">{cat.name}</span>
+                <Icon className="h-6 w-6 text-theme-text-secondary" />
+                <span className="text-sm font-semibold text-theme-text-primary">{cat.name}</span>
               </Link>
             );
           })}
