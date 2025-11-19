@@ -6,6 +6,7 @@ import { Search, ShoppingCart, Menu, Phone, MapPin, ChevronDown, Heart, Badge, F
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MegaMenu } from "./MegaMenu";
+import { OffersMenu } from "./OffersMenu";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useCart } from "@/contexts/CartContext";
 import { cn } from "@/lib/utils";
@@ -13,6 +14,7 @@ import { cn } from "@/lib/utils";
 export function Header() {
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isOffersOpen, setIsOffersOpen] = useState(false);
     const { itemCount } = useCart();
 
     return (
@@ -133,9 +135,17 @@ export function Header() {
                             <Link href="/brands" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
                                 <Badge className="h-4 w-4" /> Brands
                             </Link>
-                            <Link href="/offers" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
-                                <Flame className="h-4 w-4" /> Today's Offer
-                            </Link>
+                            <div
+                                className="relative"
+                                onMouseEnter={() => setIsOffersOpen(true)}
+                                onMouseLeave={() => setIsOffersOpen(false)}
+                            >
+                                <button className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
+                                    <Flame className="h-4 w-4" /> Today's Offer
+                                    <ChevronDown className="h-4 w-4" />
+                                </button>
+                                <OffersMenu isOpen={isOffersOpen} onClose={() => setIsOffersOpen(false)} />
+                            </div>
                             <Link href="/hire-purchase" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap transition-colors">
                                 Hire Purchase
                             </Link>
@@ -144,6 +154,9 @@ export function Header() {
                             </Link>
                             <Link href="/gift-vouchers" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-colors">
                                 <Gift className="h-4 w-4" /> Gift Vouchers
+                            </Link>
+                            <Link href="/duty-free" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap transition-colors">
+                                Duty Free
                             </Link>
                             <Link href="/loyalty" className="px-5 py-4 hover:bg-theme-bg-main text-sm font-semibold whitespace-nowrap transition-colors">
                                 Loyalty / Rewards
